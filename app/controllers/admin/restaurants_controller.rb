@@ -3,6 +3,6 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authenticate_admin
   
   def index
-    @restaurants = Restaurants.all
+    @restaurants = Restaurant.all
   end
 end
