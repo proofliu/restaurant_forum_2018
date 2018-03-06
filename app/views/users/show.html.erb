@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <!--  前後各空一行 -->
+    <div class="col-md-10 col-md-offset-1">
+      
+      <!-- 用 page-header(bootstrap) 裝 User profile-->
+      <div class="page-header">
+          
+          <div class="col-md-3">
+            <img src="http://via.placeholder.com/350x350" class="img-responsive">
+          </div>
+
+          <div class="col-md-7">
+            <h2><%= @user.name %></h2>
+            <p><strong><%= @user.email %></strong></p>
+            <div><%= simple_format @user.intro %></div>
+            <% if @user.email == current_user.email %>
+              <%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-primary" %>
+            <% end %>
+          </div>
+          <!-- clearfix 怎麼放要再研究 -->
+          <div class="clearfix"></div>
+
+      </div>
+      <br>
+
+    </div>
+  </div>
+</div>
