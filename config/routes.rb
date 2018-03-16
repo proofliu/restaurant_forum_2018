@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
     member do
       get :dashboard
+      
+      post :favoite
+      post :unfavorite
     end
   end
   
