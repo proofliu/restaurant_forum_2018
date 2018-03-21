@@ -23,8 +23,6 @@ class RestaurantsController < ApplicationController
   def favorite
     @restaurant = Restaurant.find(params[:id])
     @restaurant.favorites.create!(user: current_user)
-    # 新增 favorite 之後重新計算餐廳的 favorites 數
-    @restaurant.count_favorites
     redirect_back(fallback_location: root_path) # 導回上一頁(show), 失敗的話回到首頁
   end
 
@@ -33,8 +31,6 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     favorites = Favorite.where(restaurant: @restaurant, user: current_user)
     favorites.destroy_all
-    # 刪除 favorite 之後重新計算餐廳的 favorites 數
-    @restaurant.count_favorites
     redirect_back(fallback_location: root_path) # 導回上一頁(show), 失敗的話回到首頁
   end
 
