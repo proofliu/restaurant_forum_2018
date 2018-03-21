@@ -20,5 +20,11 @@ class Restaurant < ApplicationRecord
   def is_liked?(user)
     self.liked_users.include?(user)
   end
+
+  def count_favorites
+    self.favorites_count = self.favorites.size
+    # 給值後要 save 才會立即存回 restaurants table
+    self.save
+  end
   
 end
