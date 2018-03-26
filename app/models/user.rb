@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :restaurant
 
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships 
+  # has_many(User) 和 belongs_to(Followship) 兩邊的方法是一樣的, rails 可以自動判斷單複數的差別, 可省略 source: :following
+
   def admin?
     self.role == "admin"
   end
