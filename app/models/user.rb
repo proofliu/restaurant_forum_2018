@@ -21,6 +21,10 @@ class User < ApplicationRecord
   has_many :followings, through: :followships 
   # has_many(User) 和 belongs_to(Followship) 兩邊的方法是一樣的, rails 可以自動判斷單複數的差別, 可省略 source: :following
 
+  # 用 following_id 在 followships table 上反查 follower
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
+
   def admin?
     self.role == "admin"
   end
