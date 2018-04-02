@@ -2,10 +2,13 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %>
-      <!-- create action 對應的 method 為 post, 不設定的話會 link_to 會預設為 get  -->
-      <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
-      <!-- destroy action 對應的 method 為 delete 並要餵入 id: user_id -->
-      <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+      <% if current_user.following?(user) %>
+        <!-- destroy action 對應的 method 為 delete 並要餵入 id: user_id -->
+        <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+      <% else %>
+        <!-- create action 對應的 method 為 post, 不設定的話會 link_to 會預設為 get  -->
+        <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+      <% end %>
     </li>
   <% end %>
 </ul>
