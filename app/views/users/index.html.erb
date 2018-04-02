@@ -1,0 +1,9 @@
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
+      <!-- create action 對應的 method 為 post, 不設定的話會 link_to 會預設為 get  -->
+      <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+    </li>
+  <% end %>
+</ul>
